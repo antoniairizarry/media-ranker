@@ -1,0 +1,34 @@
+<h1>Works Index</h1>
+
+<section>
+<h2>Albums</h2>
+<% albums = Work.where(category: "album") %>
+     <% albums.each do |album| %>
+      <li>Title: <%= album.title %> </li>
+      <li>Created by: <%= album.artist %></li>
+      <li>Published: <%= album.published %>
+      <br>
+    <% end %>
+    </section>
+
+    <section>
+<h2>Books</h2>
+<% books = Work.where(category: "book") %>
+     <% books.each do |book| %>
+      <li>Title: <%= book.title %> </li>
+      <li>Created by: <%= book.artist %></li>
+      <li>Published: <%= book.published %>
+      <br>
+    <% end %>
+    </section>
+
+    <section>
+<h2>Movies</h2>
+<% movies = Work.where(category: "movie") %>
+     <% movies.each do |movie| %>
+      <li>Title: <%= movie.title %> </li>
+      <li>Created by: <%= movie.artist %></li>
+      <li>Description: <%= movie.published %></li>
+      <br>
+    <% end %>
+    </section>
