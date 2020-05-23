@@ -1,0 +1,17 @@
+<%= form_with model: @work, class: 'edit-work' do |f| %>
+  <p>Add following info to edit the work:</p>
+
+  <%= f.label :category %>
+  <%= f.text_field :category %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+
+  <%= f.label :artist %>
+  <%= f.text_field :artist %>
+
+  <%= f.label :published %>
+  <%= f.text_field :published %>
+
+  <%= f.submit "Update Work", class: "edit-work-button" %>
+<% end %>

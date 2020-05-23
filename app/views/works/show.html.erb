@@ -1,1 +1,8 @@
-show
+<h1>work information</h1>
+
+
+    <td><%= @work[:title] %> </td>
+    <td><%= @work[:artist] %></td>
+    <td><%= @work[:published] %></td>
+    <td><%= link_to "Edit", edit_work_path(@work.id), method: :get %> </td>
+    <td><%= link_to "Delete", work_path(@work.id), method: :delete, data: {confirm: "Are you super sure?"}%></td>
