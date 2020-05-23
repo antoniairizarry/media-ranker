@@ -21,7 +21,7 @@ TODO SPOTLIGHT
     <section>
 <h2>Top Books</h2>
 <% books = Work.where(category: "book") %>
-     <% books.each do |book| %>
+     <% books.sample(10).each do |book| %>
       <li>Title: <%= book.title %> </li>
       <li>Created by: <%= book.artist %></li>
       <li>Published: <%= book.published %>
@@ -32,7 +32,7 @@ TODO SPOTLIGHT
     <section>
 <h2>Top Movies</h2>
 <% movies = Work.where(category: "movie") %>
-     <% movies.each do |movie| %>
+     <% movies.sample(10).each do |movie| %>
       <li>Title: <%= movie.title %> </li>
       <li>Created by: <%= movie.artist %></li>
       <li>Description: <%= movie.published %></li>
