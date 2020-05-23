@@ -4,11 +4,39 @@ homepage
   <%= link_to "View all Media", works_path %>
 </div>
 
-TODO  MEDIA SPOTLIGHT SECTION
+<section>
+TODO SPOTLIGHT
+</section>
 
-TOP MOVIES
+<h2>Top Albums</h2>
+<% albums = Work.where(category: "album") %>
+     <% albums.sample(10).each do |album| %>
+      <li>Title: <%= album.title %> </li>
+      <li>Created by: <%= album.artist %></li>
+      <li>Published: <%= album.published %>
+      <br>
+    <% end %>
+    </section>
 
-TOP BOOKS
+    <section>
+<h2>Top Books</h2>
+<% books = Work.where(category: "book") %>
+     <% books.each do |book| %>
+      <li>Title: <%= book.title %> </li>
+      <li>Created by: <%= book.artist %></li>
+      <li>Published: <%= book.published %>
+      <br>
+    <% end %>
+    </section>
 
-TOP ALBUMS
+    <section>
+<h2>Top Movies</h2>
+<% movies = Work.where(category: "movie") %>
+     <% movies.each do |movie| %>
+      <li>Title: <%= movie.title %> </li>
+      <li>Created by: <%= movie.artist %></li>
+      <li>Description: <%= movie.published %></li>
+      <br>
+    <% end %>
+    </section>
 
