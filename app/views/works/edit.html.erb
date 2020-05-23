@@ -1,8 +1,7 @@
 <%= form_with model: @work, class: 'edit-work' do |f| %>
   <p>Add following info to edit the work:</p>
 
-  <%= f.label :category %>
-  <%= f.text_field :category %>
+  Category: <%= f.select :category, [['movie'], ['album'], ['book']] %>
 
   <%= f.label :title %>
   <%= f.text_field :title %>
