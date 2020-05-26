@@ -1,38 +1,53 @@
-
-  <%= link_to "Log out", logout_path, method: :post %>
-<section>
-TODO SPOTLIGHT
+<section class="spotlight">
+<% if !Work.spotlight.nil?%>
+<% media_spotlight = Work.spotlight %>
+<h2 class="spotlight__header">
+<span class="spotlight__header--prefix">Media Spotlight</span>
+ <%=link_to media_spotlight.title, work_path(media_spotlight.id), class: "spotlight__link-to" %>
+ by <%= media_spotlight.artist%></h2>
+ <p class="spotlight__description"><%= media_spotlight.votes.count %> votes</p>
+</span>
+<% end %>
 </section>
+<hr class="root__hr">
+<section class="top-ten__container">
+  <section class="top-ten__list-container">
+  <h2 class="top-ten__header">Top Albums</h2>
+  <ul class="list-group top-ten__list">
+  <% Work.top_ten("album").each do |work| %>
+    <h4><%= link_to work.title, work_path(work.id)%></h4> 
+    <p>by <%= work.artist%></p>
+    <p> <%= work.votes.count %> votes</p>
+    <br>
+  <% end %>
+</div>
+</section>
+</ul>
+</div>
 
-<h2>Top Albums</h2>
-<% albums = Work.where(category: "album") %>
-     <% albums.sample(10).each do |album| %>
-      <td>Title: <%= link_to album.title, work_path(album.id) %></td>
-      <li>Created by: <%= album.artist %></li>
-      <li>Published: <%= album.published %>
+<section class="top-ten__container">
+  <section class="top-ten__list-container">
+<h2 class="top-ten__header">Top Books</h2>
+  <ul class="list-group top-ten__list">
+  <% Work.top_ten("book").each do |work| %>
+    <h4><%= link_to work.title, work_path(work.id)%></h4> 
+    <p>by <%= work.artist%></p>
+    <p> <%= work.votes.count %> votes</p>
+    <br>
+  <% end %>
+</ul>
+</section>
+</div>
+
+<section class="top-ten__container">
+  <section class="top-ten__list-container">
+  <h2 class="top-ten__header">Top Movies</h2>
+    <ul class="list-group top-ten__list">
+<% Work.top_ten("movie").each do |work| %>
+      <h4><%= link_to work.title, work_path(work.id) %></h4>
+      <p>by <%= work.artist %></p>
+      <p> <%= work.votes.count %> votes</p>
       <br>
     <% end %>
+    </ul>
     </section>
-
-    <section>
-<h2>Top Books</h2>
-<% books = Work.where(category: "book") %>
-     <% books.sample(10).each do |book| %>
-      <td>Title: <%= link_to book.title, work_path(book.id) %></td>
-      <li>Created by: <%= book.artist %></li>
-      <li>Published: <%= book.published %>
-      <br>
-    <% end %>
-    </section>
-
-    <section>
-<h2>Top Movies</h2>
-<% movies = Work.where(category: "movie") %>
-     <% movies.sample(10).each do |movie| %>
-      <td>Title: <%= link_to movie.title, work_path(movie.id) %></td>
-      <li>Created by: <%= movie.artist %></li>
-      <li>Description: <%= movie.published %></li>
-      <br>
-    <% end %>
-    </section>
-
