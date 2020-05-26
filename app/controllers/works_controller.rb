@@ -48,7 +48,7 @@ end
   def destroy
     @work = Work.find_by(id: params[:id])
     if @work.nil?
-      head :not_found  
+      head :not_found
       return
     end
     @work.destroy

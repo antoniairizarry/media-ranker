@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  resources :works
+  resources :works do
+    post "/upvote", to: "votes#create", as: "upvote"
+  end
+
+  resources :votes
 
   resources :users
 

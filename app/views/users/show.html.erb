@@ -1,5 +1,34 @@
-<h1>user information</h1>
+<h1>User Summary: <%= @user[:username] %></h1>
+<td>Joined site: <%= @user[:created_at] %></td>
 
 
-    <td>User summary: <%= @user[:username] %> </td>
-    <td>Joined site: <%= @user[:created_at] %></td>
+  <h2>Votes</h2>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Media Title</th>
+          <th>Created By</th>
+          <th>Published</th>
+          <th>Category</th>
+          <th>Voted On</th>
+        </tr>
+      </thead>
+      <tbody>
+          <% @user.votes.each do |vote|%>
+          <% work = Work.find_by(id: vote.work_id) %>
+          <tr>
+            <td> <%= link_to work.title, work_path(work.id) %> </td>
+            <td> <%= work.artist %> </td>
+            <td> <%= work.published %> </td>
+            <td> <%= work.category %> </td>
+            <td> <%= vote.created_at %> </td>
+          </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </section>
+
+  <%= link_to 'See All Users', users_path, class: "btn btn-secondary" %>
+  <%= link_to 'Back to Media List', root_path, class: "btn btn-primary" %>
+
+</main>

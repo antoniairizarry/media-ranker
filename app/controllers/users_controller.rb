@@ -25,40 +25,37 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def login
-    user = User.find_by(user_params)
-    if user
-      session[:user_id] = user.id
-      flash[:success] = "Successfully logged in as existing user #{user_params}"
-    else
-      user = User.create(user_params)
-      session[:user_id] = user.id
-      flash[:success] = "Successfully logged in as new user #{user_params}"
-    end
-    redirect_to root_path
-    return
-  end
+  def login 
+    @user = User.find_by(user_params)
 
-  def current
-    user_id = session[:id]
-    @current_user = User.find_by(id: session[:user_id])
-    if @current_user.nil?
-      flash[:error] = "You must be logged in to see this page."
-      redirect_to root_path
-      return
+    if !@user
+      @user = User.new(user_params)
+      if @user.save
+        flash[:success] = "Successfully created new user #{@user.username} with ID #{@user.id}"
+      else
+        render :login_form, status: :bad_request
+        return
+      end
+    else
+      flash[:success] = "Successfully logged in as existing user #{@user.username}"
     end
+
+    session[:user_id] = @user.id
+    redirect_to root_path
   end
 
   def logout
-    user_id = session[:id]
-    current_user = User.find_by(id: user_id)
-    if current_user
+    user = User.find_by(id: session[:user_id])
+    if user
       session[:user_id] = nil
       flash[:success] = "Successfully logged out"
+      redirect_to root_path
+      return
     else
-      flash[:failure] = "Error logging out"
+      session[:user_id] = nil
+      redirect_to root_path
+      return
     end
-    redirect_to root_path
   end
 end
 
